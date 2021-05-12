@@ -1,0 +1,34 @@
+﻿<Page x:Class="Hitcom_AccountingEquipment.PageFolder.AutherizationPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Hitcom_AccountingEquipment.PageFolder" xmlns:local21="clr-namespace:Hitcom_AccountingEquipment"
+      mc:Ignorable="d" 
+      d:DesignHeight="515" d:DesignWidth="365"
+      Title="AutherizationPage">
+
+        <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <StackPanel Grid.Row="1" VerticalAlignment="Center" Margin="5">
+            <TextBlock  Text="Код авторизации отправлен вам на почту" Foreground="#a961a0" TextWrapping="Wrap" TextAlignment="Center" VerticalAlignment="Center" FontFamily="Moloto" FontSize="20"   HorizontalAlignment="Center"  Width="250" Margin="5"/>
+            <Border CornerRadius="10" BorderBrush="#f18e57" BorderThickness="1" HorizontalAlignment="Center" VerticalAlignment="Center" UseLayoutRounding="True" Height="35" Width="160" Margin="5">
+                <TextBox x:Name="Auten" Foreground="#a961a0" FontFamily="Moloto" FontSize="20" Width="150" Height="25" Margin="5" BorderThickness="0" Background="Transparent" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+            </Border>
+          </StackPanel>
+        <Button Content="Проверить"  Foreground="#e5266f" BorderThickness="0" FontFamily="Moloto" Background="Transparent" FontSize="20" Width="110" Height="30" Grid.Row="2" VerticalAlignment="Center" HorizontalAlignment="Center" Click="Button_Click"/>
+        <StackPanel Orientation="Horizontal"  Grid.Row="3" VerticalAlignment="Top" HorizontalAlignment="Center" >
+            <Label x:Name="lbltxt" Content="Повтор письма:" Foreground="#a961a0" FontFamily="Moloto" FontSize="20" VerticalAlignment="Top" Margin="5"  MouseEnter="lbltxt_MouseEnter"/>
+            <Label x:Name="lbl" Content="600"  Foreground="#a961a0" FontFamily="Moloto" FontSize="20"  HorizontalAlignment="Center" VerticalAlignment="Top" Margin="5" />
+        </StackPanel>
+        <StackPanel HorizontalAlignment="Center" Height="66" Margin="20" VerticalAlignment="Top" Width="270">
+            <Image Source="/Hitcom_logo.png" Width="270"/>
+        </StackPanel>
+    </Grid>
+    
+</Page>

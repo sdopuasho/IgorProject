@@ -1,0 +1,30 @@
+﻿    <syncfusion:ChromelessWindow x:Class="Hitcom_AccountingEquipment.LogWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:syncfusion="http://schemas.syncfusion.com/wpf" 
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                             Icon="Hitcom_logo_1.ico"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Hitcom_AccountingEquipment"
+            xmlns:syncfusionskin ="clr-namespace:Syncfusion.SfSkinManager;assembly=Syncfusion.SfSkinManager.WPF" 
+        mc:Ignorable="d"
+         syncfusionskin:SfSkinManager.VisualStyle="Office2019HighContrastWhite" 
+        Title="" Height="510" Width="365" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" TitleBarBackground="#FF232D3E" TitleBarForeground="White"  >
+    <Window.Background>
+        <LinearGradientBrush >
+            <GradientStop Color="#FF232D3E" Offset="0"/>
+            <GradientStop Color="#FF1D222C" Offset="1"/>
+            <GradientStop Color="#FF1D222C" Offset="0.543"/>
+        </LinearGradientBrush>
+    </Window.Background>
+   
+    <Grid>
+        <Frame x:Name="FrameLogin" NavigationUIVisibility="Hidden"/>
+        <StackPanel HorizontalAlignment="Center" Height="30" Margin="30"   Width="270"  VerticalAlignment="Bottom">
+            <Button x:Name="Site" VerticalAlignment="Center" HorizontalAlignment="Center" BorderThickness="0" Background="Transparent">
+                <Hyperlink  TextDecorations="{x:Null}"  RequestNavigate="Hyperlink_RequestNavigate" Foreground="#e5266f" FontFamily="Moloto" FontSize="20" NavigateUri="https://hitcom.pro/">Перейти на сайт</Hyperlink>
+            </Button>
+        </StackPanel>
+    </Grid>
+   
+</syncfusion:ChromelessWindow>

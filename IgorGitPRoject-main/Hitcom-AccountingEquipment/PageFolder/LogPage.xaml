@@ -1,0 +1,36 @@
+﻿<Page x:Class="Hitcom_AccountingEquipment.PageFolder.LogPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:local21="clr-namespace:Hitcom_AccountingEquipment"
+      mc:Ignorable="d" 
+      d:DesignHeight="515" d:DesignWidth="365"
+      Title="LogPage">
+
+    <Grid>
+        <StackPanel HorizontalAlignment="Center" Height="70"  VerticalAlignment="Center" Width="280" Margin="48,146,47,279" >
+            <Border CornerRadius="10" BorderBrush="#f18e57" BorderThickness="1" HorizontalAlignment="Center" VerticalAlignment="Center" UseLayoutRounding="True" Height="35" Width="260" Margin="10">
+                <local21:PlaceTextBox  x:Name="LoginTextBX"  PlaceText="Логин"  Foreground="#a961a0" FontFamily="Moloto" PlaceBrush="#a961a0"
+                                       FontSize="20" BorderThickness="0" Background="Transparent" Width="250" Height="25" />
+            </Border>
+            <Label x:Name="Fail1" Visibility="Hidden"  Content="Неверный логин" HorizontalAlignment="Center"  FontSize="10" Foreground="Red"/>
+
+        </StackPanel>
+        <StackPanel HorizontalAlignment="Center" Height="70"  VerticalAlignment="Center"  Width="280" Margin="48,220,47,205" >
+            <Border CornerRadius="10" BorderBrush="#f18e57" BorderThickness="1" HorizontalAlignment="Center" VerticalAlignment="Center" UseLayoutRounding="True" Height="35" Width="260" Margin="10">
+                <local21:WaterMarkPswrdBx   x:Name="PasswordTextBX"  Watermark="Пароль" 
+						Password="{Binding Password, Mode=TwoWay}" Grid.Row="5" Grid.Column="1" TextSize="18"/>
+            </Border>
+            <Label x:Name="Fail2" Visibility="Hidden" Content="Неверный пароль" HorizontalAlignment="Center" FontSize="10" Foreground="Red" />
+        </StackPanel>
+
+
+        <StackPanel HorizontalAlignment="Center" Height="80" Margin="20" VerticalAlignment="Top" Width="290">
+            <Image Source="/Hitcom_logo.png" Width="270"  />
+            <Label x:Name="GlobarFail" Content="Логин и пароль введены неверно" HorizontalAlignment="Center" Visibility="Hidden" Foreground="Red" />
+        </StackPanel>
+        <StackPanel HorizontalAlignment="Center" Height="50"  VerticalAlignment="Center"  Width="270" Margin="48,293,47,132">
+            <Button Content="Авторизоваться" Foreground="#e5266f" BorderThickness="0"   FontFamily="Moloto" FontSize="20"  HorizontalAlignment="Center" Background="Transparent"  VerticalAlignment="Center" Margin="10" Width="160" Height="30" Click="Button_Click"/>
+        </StackPanel>
+    </Grid>
+</Page>

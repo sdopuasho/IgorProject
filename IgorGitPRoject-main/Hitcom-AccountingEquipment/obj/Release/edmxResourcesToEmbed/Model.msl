@@ -1,0 +1,195 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="Хранилище AccountingEquipmentModelContainer" CdmEntityContainer="AccountingEquipmentEntities">
+    <EntitySetMapping Name="Breakdown">
+      <EntityTypeMapping TypeName="AccountingEquipmentModel.Breakdown">
+        <MappingFragment StoreEntitySet="Breakdown">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="NameOfBreakdown" ColumnName="NameOfBreakdown" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Equipment">
+      <EntityTypeMapping TypeName="AccountingEquipmentModel.Equipment">
+        <MappingFragment StoreEntitySet="Equipment">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="FK_Nomenclature_id" ColumnName="FK_Nomenclature_id" />
+          <ScalarProperty Name="FK_Manufacturer_id" ColumnName="FK_Manufacturer_id" />
+          <ScalarProperty Name="Model" ColumnName="Model" />
+          <ScalarProperty Name="LifeTime" ColumnName="LifeTime" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="EquipmentCard">
+      <EntityTypeMapping TypeName="AccountingEquipmentModel.EquipmentCard">
+        <MappingFragment StoreEntitySet="EquipmentCard">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="InventNumber" ColumnName="InventNumber" />
+          <ScalarProperty Name="DateOfDelivery" ColumnName="DateOfDelivery" />
+          <ScalarProperty Name="FK_Equipment_id" ColumnName="FK_Equipment_id" />
+          <ScalarProperty Name="FK_StatusOfEquipment_id" ColumnName="FK_StatusOfEquipment_id" />
+          <ScalarProperty Name="SerialNumber" ColumnName="SerialNumber" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Gender">
+      <EntityTypeMapping TypeName="AccountingEquipmentModel.Gender">
+        <MappingFragment StoreEntitySet="Gender">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="GenderName" ColumnName="GenderName" />
+          <ScalarProperty Name="GenderShort" ColumnName="GenderShort" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Inventory">
+      <EntityTypeMapping TypeName="AccountingEquipmentModel.Inventory">
+        <MappingFragment StoreEntitySet="Inventory">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="FK_Room_id" ColumnName="FK_Room_id" />
+          <ScalarProperty Name="FK_StatusOfInventory_id" ColumnName="FK_StatusOfInventory_id" />
+          <ScalarProperty Name="FK_Worker_id" ColumnName="FK_Worker_id" />
+          <ScalarProperty Name="FK_EquipmentCard_id" ColumnName="FK_EquipmentCard_id" />
+          <ScalarProperty Name="InventoryDate" ColumnName="InventoryDate" />
+          <ScalarProperty Name="Comment" ColumnName="Comment" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Manufacturer">
+      <EntityTypeMapping TypeName="AccountingEquipmentModel.Manufacturer">
+        <MappingFragment StoreEntitySet="Manufacturer">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="ManufacturerName" ColumnName="ManufacturerName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Nomenclature">
+      <EntityTypeMapping TypeName="AccountingEquipmentModel.Nomenclature">
+        <MappingFragment StoreEntitySet="Nomenclature">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="NameOfNomenclature" ColumnName="NameOfNomenclature" />
+          <ScalarProperty Name="FK_TypeOfNomenclature_id" ColumnName="FK_TypeOfNomenclature_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="OperationHystory">
+      <EntityTypeMapping TypeName="AccountingEquipmentModel.OperationHystory">
+        <MappingFragment StoreEntitySet="OperationHystory">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="FK_Worker_id" ColumnName="FK_Worker_id" />
+          <ScalarProperty Name="Operation" ColumnName="Operation" />
+          <ScalarProperty Name="DateTimeOfOperation" ColumnName="DateTimeOfOperation" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Position">
+      <EntityTypeMapping TypeName="AccountingEquipmentModel.Position">
+        <MappingFragment StoreEntitySet="Position">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="PostionName" ColumnName="PostionName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Repair">
+      <EntityTypeMapping TypeName="AccountingEquipmentModel.Repair">
+        <MappingFragment StoreEntitySet="Repair">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="FK_Worker_id" ColumnName="FK_Worker_id" />
+          <ScalarProperty Name="FK_EquipmentCard_id" ColumnName="FK_EquipmentCard_id" />
+          <ScalarProperty Name="FK_StatusEquipInRepair_id" ColumnName="FK_StatusEquipInRepair_id" />
+          <ScalarProperty Name="FK_ServiceOrganization_id" ColumnName="FK_ServiceOrganization_id" />
+          <ScalarProperty Name="FK_Breakdown_id" ColumnName="FK_Breakdown_id" />
+          <ScalarProperty Name="DateOfDeliveryForRepair" ColumnName="DateOfDeliveryForRepair" />
+          <ScalarProperty Name="DateOfReceiving" ColumnName="DateOfReceiving" />
+          <ScalarProperty Name="RenewalsRepair" ColumnName="RenewalsRepair" />
+          <ScalarProperty Name="NumberOfRepair" ColumnName="NumberOfRepair" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Room">
+      <EntityTypeMapping TypeName="AccountingEquipmentModel.Room">
+        <MappingFragment StoreEntitySet="Room">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="NameOfRoom" ColumnName="NameOfRoom" />
+          <ScalarProperty Name="FK_TypeOfRoom_id" ColumnName="FK_TypeOfRoom_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ServiceOrganization">
+      <EntityTypeMapping TypeName="AccountingEquipmentModel.ServiceOrganization">
+        <MappingFragment StoreEntitySet="ServiceOrganization">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="NameOfServiceOrganization" ColumnName="NameOfServiceOrganization" />
+          <ScalarProperty Name="ContactPhone" ColumnName="ContactPhone" />
+          <ScalarProperty Name="EmailOfOrganization" ColumnName="EmailOfOrganization" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="StatusEquipInRepair">
+      <EntityTypeMapping TypeName="AccountingEquipmentModel.StatusEquipInRepair">
+        <MappingFragment StoreEntitySet="StatusEquipInRepair">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="StatusEquipInRepair1" ColumnName="StatusEquipInRepair" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="StatusOfEquipment">
+      <EntityTypeMapping TypeName="AccountingEquipmentModel.StatusOfEquipment">
+        <MappingFragment StoreEntitySet="StatusOfEquipment">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="NameOfStatus" ColumnName="NameOfStatus" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="StatusOfInventory">
+      <EntityTypeMapping TypeName="AccountingEquipmentModel.StatusOfInventory">
+        <MappingFragment StoreEntitySet="StatusOfInventory">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="InventoryStatus" ColumnName="InventoryStatus" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="StatusOfWorker">
+      <EntityTypeMapping TypeName="AccountingEquipmentModel.StatusOfWorker">
+        <MappingFragment StoreEntitySet="StatusOfWorker">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="NameOfStatus" ColumnName="NameOfStatus" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TypeOfNomenclature">
+      <EntityTypeMapping TypeName="AccountingEquipmentModel.TypeOfNomenclature">
+        <MappingFragment StoreEntitySet="TypeOfNomenclature">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="TypeOfNomenclature1" ColumnName="TypeOfNomenclature" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TypeOfRoom">
+      <EntityTypeMapping TypeName="AccountingEquipmentModel.TypeOfRoom">
+        <MappingFragment StoreEntitySet="TypeOfRoom">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="NameOfType" ColumnName="NameOfType" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Worker">
+      <EntityTypeMapping TypeName="AccountingEquipmentModel.Worker">
+        <MappingFragment StoreEntitySet="Worker">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+          <ScalarProperty Name="LastName" ColumnName="LastName" />
+          <ScalarProperty Name="MiddleName" ColumnName="MiddleName" />
+          <ScalarProperty Name="FK_Gender_id" ColumnName="FK_Gender_id" />
+          <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+          <ScalarProperty Name="EmailOfWorker" ColumnName="EmailOfWorker" />
+          <ScalarProperty Name="FK_StatusOfWorker_id" ColumnName="FK_StatusOfWorker_id" />
+          <ScalarProperty Name="FK_Position_id" ColumnName="FK_Position_id" />
+          <ScalarProperty Name="Login" ColumnName="Login" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="CheckFirstVisit" ColumnName="CheckFirstVisit" />
+          <ScalarProperty Name="Photo" ColumnName="Photo" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

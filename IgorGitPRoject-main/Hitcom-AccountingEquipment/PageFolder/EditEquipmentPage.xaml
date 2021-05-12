@@ -1,0 +1,100 @@
+﻿<Page x:Class="Hitcom_AccountingEquipment.PageFolder.EditEquipmentPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Hitcom_AccountingEquipment.PageFolder" xmlns:local21="clr-namespace:Hitcom_AccountingEquipment"
+      mc:Ignorable="d" 
+      d:DesignHeight="800" d:DesignWidth="500"
+      Title="EditEquipmentPage">
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="220"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="50"/>
+        </Grid.RowDefinitions>
+        <TextBlock Text="Номенклатура" Grid.Row="2" Foreground="#a961a0" FontFamily="Moloto" FontSize="20" Margin="10" VerticalAlignment="Center" HorizontalAlignment="Center"  ></TextBlock>
+        <TextBlock Text="Производитель" Grid.Row="0" Foreground="#a961a0" FontFamily="Moloto" FontSize="20" Margin="10"  VerticalAlignment="Center" HorizontalAlignment="Center"></TextBlock>
+        <TextBlock Text="Серийный номер" Grid.Row="3" Foreground="#a961a0" FontFamily="Moloto" FontSize="20" Margin="10" VerticalAlignment="Center" HorizontalAlignment="Center"></TextBlock>
+        <TextBlock Text="Инвентарный номер" Grid.Row="4" Foreground="#a961a0" FontFamily="Moloto" FontSize="20" Margin="10" VerticalAlignment="Center" HorizontalAlignment="Center"></TextBlock>
+        <TextBlock Text="Модель" Grid.Row="1" Foreground="#a961a0" FontFamily="Moloto" FontSize="20" Margin="10" VerticalAlignment="Center" HorizontalAlignment="Center"></TextBlock>
+        <TextBlock Text="Дата принятия в учёт" Grid.Row="5" Foreground="#a961a0" FontFamily="Moloto" FontSize="20" Margin="10" VerticalAlignment="Center" HorizontalAlignment="Center"></TextBlock>
+        <StackPanel Orientation="Vertical" Grid.Row="0" Grid.Column="1">
+            <Border CornerRadius="10" BorderBrush="#f18e57" BorderThickness="1" HorizontalAlignment="Center" Grid.Row="2" Grid.Column="1"  VerticalAlignment="Center" UseLayoutRounding="True" Height="35" Width="260" Margin="5">
+                <ComboBox x:Name="ComboNomenclature" SelectedItem="{Binding Equipment.Nomenclature}" Background="White" Foreground="#a961a0" BorderThickness="0"  FontFamily="Moloto" FontSize="20"  Grid.Row="2" Grid.Column="1"  Width="250" Height="25"  Margin="5" DisplayMemberPath="NameOfNomenclature" >
+                    <ComboBox.Resources>
+                        <Style TargetType="{x:Type ComboBox}">
+                            <Setter Property="Foreground" Value="#a961a0"/>
+                            <Setter Property="FontFamily" Value="Moloto"/>
+                            <Setter Property="FontSize" Value="20"/>
+                            <Setter Property="Height" Value="35"/>
+                            <Setter Property="Background" Value="#FF232D3E"/>
+                        </Style>
+                    </ComboBox.Resources>
+                </ComboBox>
+            </Border>
+            <Label x:Name="ManufacturerFail" Foreground="Red" Visibility="Collapsed"/>
+        </StackPanel>
+        <StackPanel Orientation="Vertical" Grid.Row="1" Grid.Column="1">
+            <Border CornerRadius="10" BorderBrush="#f18e57" BorderThickness="1" HorizontalAlignment="Center" Grid.Row="1" Grid.Column="1"  VerticalAlignment="Center" UseLayoutRounding="True" Height="35" Width="260" Margin="5">
+                <ComboBox x:Name="ComboModel" SelectedItem="{Binding Equipment}"  Background="White" Foreground="#a961a0" BorderThickness="0"  FontFamily="Moloto" FontSize="20"  Grid.Row="1" Grid.Column="1"  Width="250" Height="25"  Margin="5" DisplayMemberPath="Model" >
+                    <ComboBox.Resources>
+                        <Style TargetType="{x:Type ComboBox}">
+                            <Setter Property="Foreground" Value="#a961a0"/>
+                            <Setter Property="FontFamily" Value="Moloto"/>
+                            <Setter Property="FontSize" Value="20"/>
+                            <Setter Property="Height" Value="35"/>
+                            <Setter Property="Background" Value="#FF232D3E"/>
+                        </Style>
+                    </ComboBox.Resources>
+                </ComboBox>
+            </Border>
+            <Label x:Name="ModelFail" Foreground="Red" Visibility="Collapsed"/>
+        </StackPanel>
+        <StackPanel Orientation="Vertical" Grid.Row="2" Grid.Column="1">
+            <Border CornerRadius="10" BorderBrush="#f18e57" BorderThickness="1" HorizontalAlignment="Center" Grid.Row="0" Grid.Column="1"  VerticalAlignment="Center" UseLayoutRounding="True" Height="35" Width="260" Margin="5">
+                <ComboBox x:Name="ComboManufacturer" SelectedItem="{Binding Equipment.Manufacturer}" Background="White" Foreground="#a961a0" BorderThickness="0"  FontFamily="Moloto" FontSize="20"  Grid.Row="1" Grid.Column="1"  Width="250" Height="25"  Margin="5" DisplayMemberPath="ManufacturerName" >
+                    <ComboBox.Resources>
+                        <Style TargetType="{x:Type ComboBox}">
+                            <Setter Property="Foreground" Value="#a961a0"/>
+                            <Setter Property="FontFamily" Value="Moloto"/>
+                            <Setter Property="FontSize" Value="20"/>
+                            <Setter Property="Height" Value="35"/>
+                            <Setter Property="Background" Value="#FF232D3E"/>
+                        </Style>
+                    </ComboBox.Resources>
+                </ComboBox>
+            </Border>
+            <Label x:Name="NomenclatureFail" Foreground="Red" Visibility="Collapsed"/>
+        </StackPanel>
+        <StackPanel Orientation="Vertical" Grid.Row="3" Grid.Column="1">
+            <Border CornerRadius="10" BorderBrush="#f18e57" BorderThickness="1" HorizontalAlignment="Center" Grid.Row="3" Grid.Column="1"  VerticalAlignment="Center" UseLayoutRounding="True" Height="35" Width="260" Margin="5">
+                <TextBox Text="{Binding SerialNumber}" PreviewTextInput="TextBox_PreviewTextInput"  Foreground="#a961a0"  FontFamily="Moloto" FontSize="20"   BorderThickness="0" Background="Transparent" Width="250" Height="25" ></TextBox>
+            </Border>
+            <Label x:Name="SerialNumberFail" Foreground="Red" Visibility="Collapsed"/>
+        </StackPanel>
+        <StackPanel Orientation="Vertical" Grid.Row="4" Grid.Column="1">
+            <Border CornerRadius="10" BorderBrush="#f18e57" BorderThickness="1" HorizontalAlignment="Center"  Grid.Row="4" Grid.Column="1"  VerticalAlignment="Center" UseLayoutRounding="True" Height="35" Width="260" Margin="5">
+                <TextBox Text="{Binding InventNumber}"  PreviewTextInput="TextBox_PreviewTextInput_1" Foreground="#a961a0" FontFamily="Moloto" FontSize="20"   BorderThickness="0" Background="Transparent" Width="250" Height="25"></TextBox>
+            </Border>
+            <Label x:Name="InventNumber" Visibility="Collapsed" Foreground="Red"/>
+        </StackPanel>
+        <StackPanel Orientation="Vertical" Grid.Row="5" Grid.Column="1">
+            <Border CornerRadius="10" BorderBrush="#f18e57" BorderThickness="1" HorizontalAlignment="Center"  Grid.Row="5" Grid.Column="1"  VerticalAlignment="Center" UseLayoutRounding="True" Height="35" Width="260" Margin="5">
+                <TextBox  Text="{Binding DateOfDelivery}" Foreground="#a961a0" FontFamily="Moloto" FontSize="20"   BorderThickness="0" Background="Transparent" Width="250" Height="25"></TextBox>
+            </Border>
+            <Label x:Name="DateFail" Foreground="Red" Visibility="Collapsed"/>
+        </StackPanel>
+
+        <Button Content="Сохранить" Foreground="#e5266f" BorderThickness="0"   FontFamily="Moloto" FontSize="20"  HorizontalAlignment="Center" Background="Transparent"  VerticalAlignment="Top" Margin="60,10,60,0" Width="160" Height="30" Grid.Column="1" Grid.Row="6"   Name="BtnSave" Click="BtnSave_Click"/>
+    </Grid>
+</Page>

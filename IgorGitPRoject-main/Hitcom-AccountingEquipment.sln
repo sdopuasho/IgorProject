@@ -1,0 +1,41 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30204.135
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hitcom-AccountingEquipment", "Hitcom-AccountingEquipment\Hitcom-AccountingEquipment.csproj", "{E9005CBA-0485-4888-A4F1-54367C1785B1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTestHitcom", "UnitTestHitcom\UnitTestHitcom.csproj", "{B6A86D82-B575-420D-A8B8-0FC8FAD31257}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Debug-Xml|Any CPU = Debug-Xml|Any CPU
+		Release|Any CPU = Release|Any CPU
+		Release-Xml|Any CPU = Release-Xml|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{E9005CBA-0485-4888-A4F1-54367C1785B1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E9005CBA-0485-4888-A4F1-54367C1785B1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E9005CBA-0485-4888-A4F1-54367C1785B1}.Debug-Xml|Any CPU.ActiveCfg = Debug|Any CPU
+		{E9005CBA-0485-4888-A4F1-54367C1785B1}.Debug-Xml|Any CPU.Build.0 = Debug|Any CPU
+		{E9005CBA-0485-4888-A4F1-54367C1785B1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E9005CBA-0485-4888-A4F1-54367C1785B1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E9005CBA-0485-4888-A4F1-54367C1785B1}.Release-Xml|Any CPU.ActiveCfg = Release|Any CPU
+		{E9005CBA-0485-4888-A4F1-54367C1785B1}.Release-Xml|Any CPU.Build.0 = Release|Any CPU
+		{B6A86D82-B575-420D-A8B8-0FC8FAD31257}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B6A86D82-B575-420D-A8B8-0FC8FAD31257}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B6A86D82-B575-420D-A8B8-0FC8FAD31257}.Debug-Xml|Any CPU.ActiveCfg = Debug|Any CPU
+		{B6A86D82-B575-420D-A8B8-0FC8FAD31257}.Debug-Xml|Any CPU.Build.0 = Debug|Any CPU
+		{B6A86D82-B575-420D-A8B8-0FC8FAD31257}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B6A86D82-B575-420D-A8B8-0FC8FAD31257}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B6A86D82-B575-420D-A8B8-0FC8FAD31257}.Release-Xml|Any CPU.ActiveCfg = Release|Any CPU
+		{B6A86D82-B575-420D-A8B8-0FC8FAD31257}.Release-Xml|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {B07BBD8B-04CA-4BE0-91A5-107CCD1F0E17}
+	EndGlobalSection
+EndGlobal

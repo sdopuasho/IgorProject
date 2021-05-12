@@ -1,0 +1,76 @@
+﻿<Page x:Class="Hitcom_AccountingEquipment.EquipmentPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Hitcom_AccountingEquipment"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="EquipmentPage" IsVisibleChanged="Page_IsVisibleChanged">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="45*"/>
+            <RowDefinition Height="377*"/>
+        </Grid.RowDefinitions>
+        <Border BorderBrush="#f18e57" BorderThickness="1" CornerRadius="5"  Grid.Row="1">
+            <DataGrid  x:Name="DgridMyPage" Grid.Row="1" AutoGenerateColumns="False" IsReadOnly="True" Margin="5">
+            <DataGrid.Resources>
+                <Style BasedOn="{StaticResource {x:Type DataGridColumnHeader}}" TargetType="{x:Type DataGridColumnHeader}">
+                    <Setter Property="Foreground" Value="#a961a0" />
+                    <Setter Property="FontFamily" Value="Moloto"/>
+                    <Setter Property="FontSize" Value="20"/>
+                    <Setter Property="Height" Value="35"/>
+                    <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                    <Setter Property="Width" Value="auto"/>
+                    <Setter Property="VerticalContentAlignment" Value="Center"/>
+                </Style>
+            </DataGrid.Resources>
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Производитель" Binding="{Binding Equipment.Manufacturer.ManufacturerName}"  Foreground="#a961a0" FontFamily="Moloto" FontSize="20" Width="auto"></DataGridTextColumn>
+                <DataGridTextColumn Header="Модель" Binding="{Binding Equipment.Model}" Foreground="#a961a0" FontFamily="Moloto" FontSize="20"  Width="auto"></DataGridTextColumn>
+                <DataGridTextColumn Header="Номенклатура" Binding="{Binding Equipment.Nomenclature.NameOfNomenclature}" Foreground="#a961a0" FontFamily="Moloto" FontSize="20"  Width="auto"></DataGridTextColumn>
+                <DataGridTextColumn Header="Серийный номер" Binding="{Binding SerialNumber}" Foreground="#a961a0" FontFamily="Moloto" FontSize="20"  Width="auto"></DataGridTextColumn>
+                <DataGridTextColumn Header="Инвентарный номер" Binding="{Binding InventNumber}" Foreground="#a961a0" FontFamily="Moloto" FontSize="20"  Width="auto"></DataGridTextColumn>
+                <DataGridTextColumn Header="Дата принятия в учёт" Binding="{Binding DateOfDelivery}" Foreground="#a961a0" FontFamily="Moloto" FontSize="20"  Width="auto"></DataGridTextColumn>
+                    <DataGridTemplateColumn Width="auto">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Button Content="Вывод из эксплуатации" Name="BtnOut" Click="BtnOut_Click" Foreground="#e5266f" BorderThickness="0"   FontFamily="Moloto" FontSize="20"  HorizontalAlignment="Center" Background="Transparent"  VerticalAlignment="Center"   Width="150" Height="35" Margin="5"></Button>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                    <DataGridTemplateColumn Width="auto">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Content="Редактировать" Name="BtnEdit" Click="BtnEdit_Click" Foreground="#e5266f" BorderThickness="0"   FontFamily="Moloto" FontSize="20"  HorizontalAlignment="Center" Background="Transparent"  VerticalAlignment="Center"   Width="150" Height="35" Margin="5"></Button>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                    
+                </DataGrid.Columns>
+        </DataGrid>
+        </Border>
+        <StackPanel Orientation="Horizontal">
+            <Border CornerRadius="10" BorderBrush="#f18e57" BorderThickness="1"  Grid.Row="0" Grid.Column="1"  HorizontalAlignment="Left"  VerticalAlignment="Center" UseLayoutRounding="True" Height="35" Width="160" Margin="5">
+                <local:PlaceTextBox  Foreground="#a961a0"  PlaceBrush="#a961a0"  PlaceText="Поиск" FontFamily="Moloto" FontSize="20"  BorderThickness="0" Background="Transparent" MaxLength="17" Width="150" Height="25"  Margin="5"  TextChanged="SearchTxt_TextChanged"  x:Name="SearchTxt" />
+            </Border>
+            <Border CornerRadius="10" BorderBrush="#f18e57" BorderThickness="1"  Grid.Row="0" Grid.Column="1"  HorizontalAlignment="Left"  VerticalAlignment="Center" UseLayoutRounding="True" Height="35" Width="160" Margin="5">
+                <ComboBox SelectedIndex="0" x:Name="FilteCmb" DropDownClosed="FilteCmb_DropDownClosed" DisplayMemberPath="ManufacturerName" Background="White" Foreground="#a961a0" BorderThickness="0"  FontFamily="Moloto" FontSize="20"  Width="150" Height="25" Margin="5" VerticalAlignment="Center" HorizontalAlignment="Center" >
+                    <ComboBox.Resources>
+                        <Style TargetType="{x:Type ComboBox}">
+                            <Setter Property="Foreground" Value="#a961a0"/>
+                            <Setter Property="FontFamily" Value="Moloto"/>
+                            <Setter Property="FontSize" Value="20"/>
+                            <Setter Property="Height" Value="35"/>
+                            <Setter Property="Background" Value="#FF232D3E"/>
+                        </Style>
+                    </ComboBox.Resources>
+                </ComboBox>
+            </Border>
+            <Button Content="Карточка"  Name="BtnAdd" Foreground="#e5266f" BorderThickness="0"   FontFamily="Moloto" FontSize="20"  HorizontalAlignment="Center" Background="Transparent"  VerticalAlignment="Center" Margin="10" Click="BtnAdd_Click"></Button>
+            <Button Content="Вид"  Name="BtnAddEquipment"  Foreground="#e5266f" BorderThickness="0"   FontFamily="Moloto" FontSize="20"  HorizontalAlignment="Center" Background="Transparent"  VerticalAlignment="Center" Margin="10"  Click="BtnAddEquipment_Click"></Button>
+            <Button Content="Удалить"  Name="BtnDel"  Foreground="#e5266f" BorderThickness="0"   FontFamily="Moloto" FontSize="20"  HorizontalAlignment="Center" Background="Transparent"  VerticalAlignment="Center" Margin="10"   Click="BtnDel_Click"></Button>
+        </StackPanel>
+    </Grid>
+</Page>

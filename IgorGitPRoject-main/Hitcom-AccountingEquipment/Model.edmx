@@ -1,0 +1,1262 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="Хранилище AccountingEquipmentModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Breakdown">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NameOfBreakdown" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Equipment">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FK_Nomenclature_id" Type="int" Nullable="false" />
+          <Property Name="FK_Manufacturer_id" Type="int" Nullable="false" />
+          <Property Name="Model" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="LifeTime" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="EquipmentCard">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="InventNumber" Type="nvarchar" MaxLength="15" Nullable="false" />
+          <Property Name="DateOfDelivery" Type="datetime" Nullable="false" />
+          <Property Name="FK_Equipment_id" Type="int" Nullable="false" />
+          <Property Name="FK_StatusOfEquipment_id" Type="int" Nullable="false" />
+          <Property Name="SerialNumber" Type="nvarchar" MaxLength="20" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Gender">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="GenderName" Type="nvarchar" MaxLength="7" Nullable="false" />
+          <Property Name="GenderShort" Type="nvarchar" MaxLength="3" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Inventory">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FK_Room_id" Type="int" Nullable="false" />
+          <Property Name="FK_StatusOfInventory_id" Type="int" Nullable="false" />
+          <Property Name="FK_Worker_id" Type="int" Nullable="false" />
+          <Property Name="FK_EquipmentCard_id" Type="int" Nullable="false" />
+          <Property Name="InventoryDate" Type="datetime" Nullable="false" />
+          <Property Name="Comment" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="Manufacturer">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ManufacturerName" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Nomenclature">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NameOfNomenclature" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="FK_TypeOfNomenclature_id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="OperationHystory">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FK_Worker_id" Type="int" Nullable="false" />
+          <Property Name="Operation" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="DateTimeOfOperation" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Position">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PostionName" Type="nvarchar" MaxLength="30" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Repair">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FK_Worker_id" Type="int" Nullable="false" />
+          <Property Name="FK_EquipmentCard_id" Type="int" Nullable="false" />
+          <Property Name="FK_StatusEquipInRepair_id" Type="int" Nullable="false" />
+          <Property Name="FK_ServiceOrganization_id" Type="int" Nullable="false" />
+          <Property Name="FK_Breakdown_id" Type="int" Nullable="false" />
+          <Property Name="DateOfDeliveryForRepair" Type="datetime" Nullable="false" />
+          <Property Name="DateOfReceiving" Type="datetime" Nullable="false" />
+          <Property Name="RenewalsRepair" Type="bit" Nullable="false" />
+          <Property Name="NumberOfRepair" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Room">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NameOfRoom" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="FK_TypeOfRoom_id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ServiceOrganization">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NameOfServiceOrganization" Type="nvarchar" MaxLength="120" Nullable="false" />
+          <Property Name="ContactPhone" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="EmailOfOrganization" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="StatusEquipInRepair">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="StatusEquipInRepair" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="StatusOfEquipment">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NameOfStatus" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="StatusOfInventory">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="InventoryStatus" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="StatusOfWorker">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NameOfStatus" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TypeOfNomenclature">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TypeOfNomenclature" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TypeOfRoom">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NameOfType" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Worker">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FirstName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="LastName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="MiddleName" Type="nvarchar" MaxLength="50" />
+          <Property Name="FK_Gender_id" Type="int" Nullable="false" />
+          <Property Name="PhoneNumber" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="EmailOfWorker" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="FK_StatusOfWorker_id" Type="int" Nullable="false" />
+          <Property Name="FK_Position_id" Type="int" Nullable="false" />
+          <Property Name="Login" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Password" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="CheckFirstVisit" Type="bit" Nullable="false" />
+          <Property Name="Photo" Type="image" />
+        </EntityType>
+        <Association Name="FK_Equipment_Manufacturer">
+          <End Role="Manufacturer" Type="Self.Manufacturer" Multiplicity="1" />
+          <End Role="Equipment" Type="Self.Equipment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Manufacturer">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Equipment">
+              <PropertyRef Name="FK_Manufacturer_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Equipment_Nomenclature">
+          <End Role="Nomenclature" Type="Self.Nomenclature" Multiplicity="1" />
+          <End Role="Equipment" Type="Self.Equipment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Nomenclature">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Equipment">
+              <PropertyRef Name="FK_Nomenclature_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EquipmentCard_Equipment">
+          <End Role="Equipment" Type="Self.Equipment" Multiplicity="1" />
+          <End Role="EquipmentCard" Type="Self.EquipmentCard" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Equipment">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="EquipmentCard">
+              <PropertyRef Name="FK_Equipment_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EquipmentCard_StatusOfEquipment">
+          <End Role="StatusOfEquipment" Type="Self.StatusOfEquipment" Multiplicity="1" />
+          <End Role="EquipmentCard" Type="Self.EquipmentCard" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="StatusOfEquipment">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="EquipmentCard">
+              <PropertyRef Name="FK_StatusOfEquipment_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Inventory_EquipmentCard">
+          <End Role="EquipmentCard" Type="Self.EquipmentCard" Multiplicity="1" />
+          <End Role="Inventory" Type="Self.Inventory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EquipmentCard">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Inventory">
+              <PropertyRef Name="FK_EquipmentCard_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Inventory_Room">
+          <End Role="Room" Type="Self.Room" Multiplicity="1" />
+          <End Role="Inventory" Type="Self.Inventory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Room">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Inventory">
+              <PropertyRef Name="FK_Room_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Inventory_StatusOfInventory">
+          <End Role="StatusOfInventory" Type="Self.StatusOfInventory" Multiplicity="1" />
+          <End Role="Inventory" Type="Self.Inventory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="StatusOfInventory">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Inventory">
+              <PropertyRef Name="FK_StatusOfInventory_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Inventory_Worker">
+          <End Role="Worker" Type="Self.Worker" Multiplicity="1" />
+          <End Role="Inventory" Type="Self.Inventory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Worker">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Inventory">
+              <PropertyRef Name="FK_Worker_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Nomenclature_TypeOfNomenclature">
+          <End Role="TypeOfNomenclature" Type="Self.TypeOfNomenclature" Multiplicity="1" />
+          <End Role="Nomenclature" Type="Self.Nomenclature" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TypeOfNomenclature">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Nomenclature">
+              <PropertyRef Name="FK_TypeOfNomenclature_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OperationHystory_Worker">
+          <End Role="Worker" Type="Self.Worker" Multiplicity="1" />
+          <End Role="OperationHystory" Type="Self.OperationHystory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Worker">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="OperationHystory">
+              <PropertyRef Name="FK_Worker_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Repair_Breakdown">
+          <End Role="Breakdown" Type="Self.Breakdown" Multiplicity="1" />
+          <End Role="Repair" Type="Self.Repair" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Breakdown">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Repair">
+              <PropertyRef Name="FK_Breakdown_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Repair_EquipmentCard">
+          <End Role="EquipmentCard" Type="Self.EquipmentCard" Multiplicity="1" />
+          <End Role="Repair" Type="Self.Repair" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EquipmentCard">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Repair">
+              <PropertyRef Name="FK_EquipmentCard_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Repair_ServiceOrganization">
+          <End Role="ServiceOrganization" Type="Self.ServiceOrganization" Multiplicity="1" />
+          <End Role="Repair" Type="Self.Repair" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ServiceOrganization">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Repair">
+              <PropertyRef Name="FK_ServiceOrganization_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Repair_StatusEquipInRepair">
+          <End Role="StatusEquipInRepair" Type="Self.StatusEquipInRepair" Multiplicity="1" />
+          <End Role="Repair" Type="Self.Repair" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="StatusEquipInRepair">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Repair">
+              <PropertyRef Name="FK_StatusEquipInRepair_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Repair_Worker">
+          <End Role="Worker" Type="Self.Worker" Multiplicity="1" />
+          <End Role="Repair" Type="Self.Repair" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Worker">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Repair">
+              <PropertyRef Name="FK_Worker_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Room_TypeOfRoom">
+          <End Role="TypeOfRoom" Type="Self.TypeOfRoom" Multiplicity="1" />
+          <End Role="Room" Type="Self.Room" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TypeOfRoom">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Room">
+              <PropertyRef Name="FK_TypeOfRoom_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Worker_Gender">
+          <End Role="Gender" Type="Self.Gender" Multiplicity="1" />
+          <End Role="Worker" Type="Self.Worker" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Gender">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Worker">
+              <PropertyRef Name="FK_Gender_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Worker_Position">
+          <End Role="Position" Type="Self.Position" Multiplicity="1" />
+          <End Role="Worker" Type="Self.Worker" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Position">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Worker">
+              <PropertyRef Name="FK_Position_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Worker_StatusOfWorker">
+          <End Role="StatusOfWorker" Type="Self.StatusOfWorker" Multiplicity="1" />
+          <End Role="Worker" Type="Self.Worker" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="StatusOfWorker">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Worker">
+              <PropertyRef Name="FK_StatusOfWorker_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Хранилище AccountingEquipmentModelContainer">
+          <EntitySet Name="Breakdown" EntityType="Self.Breakdown" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Equipment" EntityType="Self.Equipment" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="EquipmentCard" EntityType="Self.EquipmentCard" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Gender" EntityType="Self.Gender" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Inventory" EntityType="Self.Inventory" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Manufacturer" EntityType="Self.Manufacturer" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Nomenclature" EntityType="Self.Nomenclature" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="OperationHystory" EntityType="Self.OperationHystory" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Position" EntityType="Self.Position" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Repair" EntityType="Self.Repair" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Room" EntityType="Self.Room" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ServiceOrganization" EntityType="Self.ServiceOrganization" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="StatusEquipInRepair" EntityType="Self.StatusEquipInRepair" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="StatusOfEquipment" EntityType="Self.StatusOfEquipment" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="StatusOfInventory" EntityType="Self.StatusOfInventory" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="StatusOfWorker" EntityType="Self.StatusOfWorker" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TypeOfNomenclature" EntityType="Self.TypeOfNomenclature" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TypeOfRoom" EntityType="Self.TypeOfRoom" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Worker" EntityType="Self.Worker" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Equipment_Manufacturer" Association="Self.FK_Equipment_Manufacturer">
+            <End Role="Manufacturer" EntitySet="Manufacturer" />
+            <End Role="Equipment" EntitySet="Equipment" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Equipment_Nomenclature" Association="Self.FK_Equipment_Nomenclature">
+            <End Role="Nomenclature" EntitySet="Nomenclature" />
+            <End Role="Equipment" EntitySet="Equipment" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EquipmentCard_Equipment" Association="Self.FK_EquipmentCard_Equipment">
+            <End Role="Equipment" EntitySet="Equipment" />
+            <End Role="EquipmentCard" EntitySet="EquipmentCard" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EquipmentCard_StatusOfEquipment" Association="Self.FK_EquipmentCard_StatusOfEquipment">
+            <End Role="StatusOfEquipment" EntitySet="StatusOfEquipment" />
+            <End Role="EquipmentCard" EntitySet="EquipmentCard" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Inventory_EquipmentCard" Association="Self.FK_Inventory_EquipmentCard">
+            <End Role="EquipmentCard" EntitySet="EquipmentCard" />
+            <End Role="Inventory" EntitySet="Inventory" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Inventory_Room" Association="Self.FK_Inventory_Room">
+            <End Role="Room" EntitySet="Room" />
+            <End Role="Inventory" EntitySet="Inventory" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Inventory_StatusOfInventory" Association="Self.FK_Inventory_StatusOfInventory">
+            <End Role="StatusOfInventory" EntitySet="StatusOfInventory" />
+            <End Role="Inventory" EntitySet="Inventory" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Inventory_Worker" Association="Self.FK_Inventory_Worker">
+            <End Role="Worker" EntitySet="Worker" />
+            <End Role="Inventory" EntitySet="Inventory" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Nomenclature_TypeOfNomenclature" Association="Self.FK_Nomenclature_TypeOfNomenclature">
+            <End Role="TypeOfNomenclature" EntitySet="TypeOfNomenclature" />
+            <End Role="Nomenclature" EntitySet="Nomenclature" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OperationHystory_Worker" Association="Self.FK_OperationHystory_Worker">
+            <End Role="Worker" EntitySet="Worker" />
+            <End Role="OperationHystory" EntitySet="OperationHystory" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Repair_Breakdown" Association="Self.FK_Repair_Breakdown">
+            <End Role="Breakdown" EntitySet="Breakdown" />
+            <End Role="Repair" EntitySet="Repair" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Repair_EquipmentCard" Association="Self.FK_Repair_EquipmentCard">
+            <End Role="EquipmentCard" EntitySet="EquipmentCard" />
+            <End Role="Repair" EntitySet="Repair" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Repair_ServiceOrganization" Association="Self.FK_Repair_ServiceOrganization">
+            <End Role="ServiceOrganization" EntitySet="ServiceOrganization" />
+            <End Role="Repair" EntitySet="Repair" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Repair_StatusEquipInRepair" Association="Self.FK_Repair_StatusEquipInRepair">
+            <End Role="StatusEquipInRepair" EntitySet="StatusEquipInRepair" />
+            <End Role="Repair" EntitySet="Repair" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Repair_Worker" Association="Self.FK_Repair_Worker">
+            <End Role="Worker" EntitySet="Worker" />
+            <End Role="Repair" EntitySet="Repair" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Room_TypeOfRoom" Association="Self.FK_Room_TypeOfRoom">
+            <End Role="TypeOfRoom" EntitySet="TypeOfRoom" />
+            <End Role="Room" EntitySet="Room" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Worker_Gender" Association="Self.FK_Worker_Gender">
+            <End Role="Gender" EntitySet="Gender" />
+            <End Role="Worker" EntitySet="Worker" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Worker_Position" Association="Self.FK_Worker_Position">
+            <End Role="Position" EntitySet="Position" />
+            <End Role="Worker" EntitySet="Worker" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Worker_StatusOfWorker" Association="Self.FK_Worker_StatusOfWorker">
+            <End Role="StatusOfWorker" EntitySet="StatusOfWorker" />
+            <End Role="Worker" EntitySet="Worker" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="AccountingEquipmentModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Breakdown">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NameOfBreakdown" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Repair" Relationship="Self.FK_Repair_Breakdown" FromRole="Breakdown" ToRole="Repair" />
+        </EntityType>
+        <EntityType Name="Equipment">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FK_Nomenclature_id" Type="Int32" Nullable="false" />
+          <Property Name="FK_Manufacturer_id" Type="Int32" Nullable="false" />
+          <Property Name="Model" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="LifeTime" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Manufacturer" Relationship="Self.FK_Equipment_Manufacturer" FromRole="Equipment" ToRole="Manufacturer" />
+          <NavigationProperty Name="Nomenclature" Relationship="Self.FK_Equipment_Nomenclature" FromRole="Equipment" ToRole="Nomenclature" />
+          <NavigationProperty Name="EquipmentCard" Relationship="Self.FK_EquipmentCard_Equipment" FromRole="Equipment" ToRole="EquipmentCard" />
+        </EntityType>
+        <EntityType Name="EquipmentCard">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="InventNumber" Type="String" MaxLength="15" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="DateOfDelivery" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="FK_Equipment_id" Type="Int32" Nullable="false" />
+          <Property Name="FK_StatusOfEquipment_id" Type="Int32" Nullable="false" />
+          <Property Name="SerialNumber" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Equipment" Relationship="Self.FK_EquipmentCard_Equipment" FromRole="EquipmentCard" ToRole="Equipment" />
+          <NavigationProperty Name="StatusOfEquipment" Relationship="Self.FK_EquipmentCard_StatusOfEquipment" FromRole="EquipmentCard" ToRole="StatusOfEquipment" />
+          <NavigationProperty Name="Inventory" Relationship="Self.FK_Inventory_EquipmentCard" FromRole="EquipmentCard" ToRole="Inventory" />
+          <NavigationProperty Name="Repair" Relationship="Self.FK_Repair_EquipmentCard" FromRole="EquipmentCard" ToRole="Repair" />
+        </EntityType>
+        <EntityType Name="Gender">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="GenderName" Type="String" MaxLength="7" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="GenderShort" Type="String" MaxLength="3" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Worker" Relationship="Self.FK_Worker_Gender" FromRole="Gender" ToRole="Worker" />
+        </EntityType>
+        <EntityType Name="Inventory">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FK_Room_id" Type="Int32" Nullable="false" />
+          <Property Name="FK_StatusOfInventory_id" Type="Int32" Nullable="false" />
+          <Property Name="FK_Worker_id" Type="Int32" Nullable="false" />
+          <Property Name="FK_EquipmentCard_id" Type="Int32" Nullable="false" />
+          <Property Name="InventoryDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Comment" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="EquipmentCard" Relationship="Self.FK_Inventory_EquipmentCard" FromRole="Inventory" ToRole="EquipmentCard" />
+          <NavigationProperty Name="Room" Relationship="Self.FK_Inventory_Room" FromRole="Inventory" ToRole="Room" />
+          <NavigationProperty Name="StatusOfInventory" Relationship="Self.FK_Inventory_StatusOfInventory" FromRole="Inventory" ToRole="StatusOfInventory" />
+          <NavigationProperty Name="Worker" Relationship="Self.FK_Inventory_Worker" FromRole="Inventory" ToRole="Worker" />
+        </EntityType>
+        <EntityType Name="Manufacturer">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ManufacturerName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Equipment" Relationship="Self.FK_Equipment_Manufacturer" FromRole="Manufacturer" ToRole="Equipment" />
+        </EntityType>
+        <EntityType Name="Nomenclature">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NameOfNomenclature" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="FK_TypeOfNomenclature_id" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Equipment" Relationship="Self.FK_Equipment_Nomenclature" FromRole="Nomenclature" ToRole="Equipment" />
+          <NavigationProperty Name="TypeOfNomenclature" Relationship="Self.FK_Nomenclature_TypeOfNomenclature" FromRole="Nomenclature" ToRole="TypeOfNomenclature" />
+        </EntityType>
+        <EntityType Name="OperationHystory">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FK_Worker_id" Type="Int32" Nullable="false" />
+          <Property Name="Operation" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="DateTimeOfOperation" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="Worker" Relationship="Self.FK_OperationHystory_Worker" FromRole="OperationHystory" ToRole="Worker" />
+        </EntityType>
+        <EntityType Name="Position">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PostionName" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Worker" Relationship="Self.FK_Worker_Position" FromRole="Position" ToRole="Worker" />
+        </EntityType>
+        <EntityType Name="Repair">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FK_Worker_id" Type="Int32" Nullable="false" />
+          <Property Name="FK_EquipmentCard_id" Type="Int32" Nullable="false" />
+          <Property Name="FK_StatusEquipInRepair_id" Type="Int32" Nullable="false" />
+          <Property Name="FK_ServiceOrganization_id" Type="Int32" Nullable="false" />
+          <Property Name="FK_Breakdown_id" Type="Int32" Nullable="false" />
+          <Property Name="DateOfDeliveryForRepair" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="DateOfReceiving" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="RenewalsRepair" Type="Boolean" Nullable="false" />
+          <Property Name="NumberOfRepair" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Breakdown" Relationship="Self.FK_Repair_Breakdown" FromRole="Repair" ToRole="Breakdown" />
+          <NavigationProperty Name="EquipmentCard" Relationship="Self.FK_Repair_EquipmentCard" FromRole="Repair" ToRole="EquipmentCard" />
+          <NavigationProperty Name="ServiceOrganization" Relationship="Self.FK_Repair_ServiceOrganization" FromRole="Repair" ToRole="ServiceOrganization" />
+          <NavigationProperty Name="StatusEquipInRepair" Relationship="Self.FK_Repair_StatusEquipInRepair" FromRole="Repair" ToRole="StatusEquipInRepair" />
+          <NavigationProperty Name="Worker" Relationship="Self.FK_Repair_Worker" FromRole="Repair" ToRole="Worker" />
+        </EntityType>
+        <EntityType Name="Room">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NameOfRoom" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="FK_TypeOfRoom_id" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Inventory" Relationship="Self.FK_Inventory_Room" FromRole="Room" ToRole="Inventory" />
+          <NavigationProperty Name="TypeOfRoom" Relationship="Self.FK_Room_TypeOfRoom" FromRole="Room" ToRole="TypeOfRoom" />
+        </EntityType>
+        <EntityType Name="ServiceOrganization">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NameOfServiceOrganization" Type="String" MaxLength="120" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ContactPhone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="EmailOfOrganization" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Repair" Relationship="Self.FK_Repair_ServiceOrganization" FromRole="ServiceOrganization" ToRole="Repair" />
+        </EntityType>
+        <EntityType Name="StatusEquipInRepair">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="StatusEquipInRepair1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Repair" Relationship="Self.FK_Repair_StatusEquipInRepair" FromRole="StatusEquipInRepair" ToRole="Repair" />
+        </EntityType>
+        <EntityType Name="StatusOfEquipment">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NameOfStatus" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="EquipmentCard" Relationship="Self.FK_EquipmentCard_StatusOfEquipment" FromRole="StatusOfEquipment" ToRole="EquipmentCard" />
+        </EntityType>
+        <EntityType Name="StatusOfInventory">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="InventoryStatus" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Inventory" Relationship="Self.FK_Inventory_StatusOfInventory" FromRole="StatusOfInventory" ToRole="Inventory" />
+        </EntityType>
+        <EntityType Name="StatusOfWorker">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NameOfStatus" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Worker" Relationship="Self.FK_Worker_StatusOfWorker" FromRole="StatusOfWorker" ToRole="Worker" />
+        </EntityType>
+        <EntityType Name="TypeOfNomenclature">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TypeOfNomenclature1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Nomenclature" Relationship="Self.FK_Nomenclature_TypeOfNomenclature" FromRole="TypeOfNomenclature" ToRole="Nomenclature" />
+        </EntityType>
+        <EntityType Name="TypeOfRoom">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NameOfType" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Room" Relationship="Self.FK_Room_TypeOfRoom" FromRole="TypeOfRoom" ToRole="Room" />
+        </EntityType>
+        <EntityType Name="Worker">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="MiddleName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="FK_Gender_id" Type="Int32" Nullable="false" />
+          <Property Name="PhoneNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="EmailOfWorker" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="FK_StatusOfWorker_id" Type="Int32" Nullable="false" />
+          <Property Name="FK_Position_id" Type="Int32" Nullable="false" />
+          <Property Name="Login" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CheckFirstVisit" Type="Boolean" Nullable="false" />
+          <Property Name="Photo" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <NavigationProperty Name="Gender" Relationship="Self.FK_Worker_Gender" FromRole="Worker" ToRole="Gender" />
+          <NavigationProperty Name="Inventory" Relationship="Self.FK_Inventory_Worker" FromRole="Worker" ToRole="Inventory" />
+          <NavigationProperty Name="OperationHystory" Relationship="Self.FK_OperationHystory_Worker" FromRole="Worker" ToRole="OperationHystory" />
+          <NavigationProperty Name="Position" Relationship="Self.FK_Worker_Position" FromRole="Worker" ToRole="Position" />
+          <NavigationProperty Name="Repair" Relationship="Self.FK_Repair_Worker" FromRole="Worker" ToRole="Repair" />
+          <NavigationProperty Name="StatusOfWorker" Relationship="Self.FK_Worker_StatusOfWorker" FromRole="Worker" ToRole="StatusOfWorker" />
+        </EntityType>
+        <Association Name="FK_Repair_Breakdown">
+          <End Role="Breakdown" Type="Self.Breakdown" Multiplicity="1" />
+          <End Role="Repair" Type="Self.Repair" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Breakdown">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Repair">
+              <PropertyRef Name="FK_Breakdown_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Equipment_Manufacturer">
+          <End Role="Manufacturer" Type="Self.Manufacturer" Multiplicity="1" />
+          <End Role="Equipment" Type="Self.Equipment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Manufacturer">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Equipment">
+              <PropertyRef Name="FK_Manufacturer_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Equipment_Nomenclature">
+          <End Role="Nomenclature" Type="Self.Nomenclature" Multiplicity="1" />
+          <End Role="Equipment" Type="Self.Equipment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Nomenclature">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Equipment">
+              <PropertyRef Name="FK_Nomenclature_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EquipmentCard_Equipment">
+          <End Role="Equipment" Type="Self.Equipment" Multiplicity="1" />
+          <End Role="EquipmentCard" Type="Self.EquipmentCard" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Equipment">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="EquipmentCard">
+              <PropertyRef Name="FK_Equipment_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EquipmentCard_StatusOfEquipment">
+          <End Role="StatusOfEquipment" Type="Self.StatusOfEquipment" Multiplicity="1" />
+          <End Role="EquipmentCard" Type="Self.EquipmentCard" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="StatusOfEquipment">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="EquipmentCard">
+              <PropertyRef Name="FK_StatusOfEquipment_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Inventory_EquipmentCard">
+          <End Role="EquipmentCard" Type="Self.EquipmentCard" Multiplicity="1" />
+          <End Role="Inventory" Type="Self.Inventory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EquipmentCard">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Inventory">
+              <PropertyRef Name="FK_EquipmentCard_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Repair_EquipmentCard">
+          <End Role="EquipmentCard" Type="Self.EquipmentCard" Multiplicity="1" />
+          <End Role="Repair" Type="Self.Repair" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EquipmentCard">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Repair">
+              <PropertyRef Name="FK_EquipmentCard_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Worker_Gender">
+          <End Role="Gender" Type="Self.Gender" Multiplicity="1" />
+          <End Role="Worker" Type="Self.Worker" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Gender">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Worker">
+              <PropertyRef Name="FK_Gender_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Inventory_Room">
+          <End Role="Room" Type="Self.Room" Multiplicity="1" />
+          <End Role="Inventory" Type="Self.Inventory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Room">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Inventory">
+              <PropertyRef Name="FK_Room_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Inventory_StatusOfInventory">
+          <End Role="StatusOfInventory" Type="Self.StatusOfInventory" Multiplicity="1" />
+          <End Role="Inventory" Type="Self.Inventory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="StatusOfInventory">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Inventory">
+              <PropertyRef Name="FK_StatusOfInventory_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Inventory_Worker">
+          <End Role="Worker" Type="Self.Worker" Multiplicity="1" />
+          <End Role="Inventory" Type="Self.Inventory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Worker">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Inventory">
+              <PropertyRef Name="FK_Worker_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Nomenclature_TypeOfNomenclature">
+          <End Role="TypeOfNomenclature" Type="Self.TypeOfNomenclature" Multiplicity="1" />
+          <End Role="Nomenclature" Type="Self.Nomenclature" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TypeOfNomenclature">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Nomenclature">
+              <PropertyRef Name="FK_TypeOfNomenclature_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OperationHystory_Worker">
+          <End Role="Worker" Type="Self.Worker" Multiplicity="1" />
+          <End Role="OperationHystory" Type="Self.OperationHystory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Worker">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="OperationHystory">
+              <PropertyRef Name="FK_Worker_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Worker_Position">
+          <End Role="Position" Type="Self.Position" Multiplicity="1" />
+          <End Role="Worker" Type="Self.Worker" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Position">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Worker">
+              <PropertyRef Name="FK_Position_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Repair_ServiceOrganization">
+          <End Role="ServiceOrganization" Type="Self.ServiceOrganization" Multiplicity="1" />
+          <End Role="Repair" Type="Self.Repair" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ServiceOrganization">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Repair">
+              <PropertyRef Name="FK_ServiceOrganization_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Repair_StatusEquipInRepair">
+          <End Role="StatusEquipInRepair" Type="Self.StatusEquipInRepair" Multiplicity="1" />
+          <End Role="Repair" Type="Self.Repair" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="StatusEquipInRepair">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Repair">
+              <PropertyRef Name="FK_StatusEquipInRepair_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Repair_Worker">
+          <End Role="Worker" Type="Self.Worker" Multiplicity="1" />
+          <End Role="Repair" Type="Self.Repair" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Worker">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Repair">
+              <PropertyRef Name="FK_Worker_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Room_TypeOfRoom">
+          <End Role="TypeOfRoom" Type="Self.TypeOfRoom" Multiplicity="1" />
+          <End Role="Room" Type="Self.Room" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TypeOfRoom">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Room">
+              <PropertyRef Name="FK_TypeOfRoom_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Worker_StatusOfWorker">
+          <End Role="StatusOfWorker" Type="Self.StatusOfWorker" Multiplicity="1" />
+          <End Role="Worker" Type="Self.Worker" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="StatusOfWorker">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Worker">
+              <PropertyRef Name="FK_StatusOfWorker_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="AccountingEquipmentEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Breakdown" EntityType="Self.Breakdown" />
+          <EntitySet Name="Equipment" EntityType="Self.Equipment" />
+          <EntitySet Name="EquipmentCard" EntityType="Self.EquipmentCard" />
+          <EntitySet Name="Gender" EntityType="Self.Gender" />
+          <EntitySet Name="Inventory" EntityType="Self.Inventory" />
+          <EntitySet Name="Manufacturer" EntityType="Self.Manufacturer" />
+          <EntitySet Name="Nomenclature" EntityType="Self.Nomenclature" />
+          <EntitySet Name="OperationHystory" EntityType="Self.OperationHystory" />
+          <EntitySet Name="Position" EntityType="Self.Position" />
+          <EntitySet Name="Repair" EntityType="Self.Repair" />
+          <EntitySet Name="Room" EntityType="Self.Room" />
+          <EntitySet Name="ServiceOrganization" EntityType="Self.ServiceOrganization" />
+          <EntitySet Name="StatusEquipInRepair" EntityType="Self.StatusEquipInRepair" />
+          <EntitySet Name="StatusOfEquipment" EntityType="Self.StatusOfEquipment" />
+          <EntitySet Name="StatusOfInventory" EntityType="Self.StatusOfInventory" />
+          <EntitySet Name="StatusOfWorker" EntityType="Self.StatusOfWorker" />
+          <EntitySet Name="TypeOfNomenclature" EntityType="Self.TypeOfNomenclature" />
+          <EntitySet Name="TypeOfRoom" EntityType="Self.TypeOfRoom" />
+          <EntitySet Name="Worker" EntityType="Self.Worker" />
+          <AssociationSet Name="FK_Repair_Breakdown" Association="Self.FK_Repair_Breakdown">
+            <End Role="Breakdown" EntitySet="Breakdown" />
+            <End Role="Repair" EntitySet="Repair" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Equipment_Manufacturer" Association="Self.FK_Equipment_Manufacturer">
+            <End Role="Manufacturer" EntitySet="Manufacturer" />
+            <End Role="Equipment" EntitySet="Equipment" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Equipment_Nomenclature" Association="Self.FK_Equipment_Nomenclature">
+            <End Role="Nomenclature" EntitySet="Nomenclature" />
+            <End Role="Equipment" EntitySet="Equipment" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EquipmentCard_Equipment" Association="Self.FK_EquipmentCard_Equipment">
+            <End Role="Equipment" EntitySet="Equipment" />
+            <End Role="EquipmentCard" EntitySet="EquipmentCard" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EquipmentCard_StatusOfEquipment" Association="Self.FK_EquipmentCard_StatusOfEquipment">
+            <End Role="StatusOfEquipment" EntitySet="StatusOfEquipment" />
+            <End Role="EquipmentCard" EntitySet="EquipmentCard" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Inventory_EquipmentCard" Association="Self.FK_Inventory_EquipmentCard">
+            <End Role="EquipmentCard" EntitySet="EquipmentCard" />
+            <End Role="Inventory" EntitySet="Inventory" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Repair_EquipmentCard" Association="Self.FK_Repair_EquipmentCard">
+            <End Role="EquipmentCard" EntitySet="EquipmentCard" />
+            <End Role="Repair" EntitySet="Repair" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Worker_Gender" Association="Self.FK_Worker_Gender">
+            <End Role="Gender" EntitySet="Gender" />
+            <End Role="Worker" EntitySet="Worker" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Inventory_Room" Association="Self.FK_Inventory_Room">
+            <End Role="Room" EntitySet="Room" />
+            <End Role="Inventory" EntitySet="Inventory" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Inventory_StatusOfInventory" Association="Self.FK_Inventory_StatusOfInventory">
+            <End Role="StatusOfInventory" EntitySet="StatusOfInventory" />
+            <End Role="Inventory" EntitySet="Inventory" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Inventory_Worker" Association="Self.FK_Inventory_Worker">
+            <End Role="Worker" EntitySet="Worker" />
+            <End Role="Inventory" EntitySet="Inventory" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Nomenclature_TypeOfNomenclature" Association="Self.FK_Nomenclature_TypeOfNomenclature">
+            <End Role="TypeOfNomenclature" EntitySet="TypeOfNomenclature" />
+            <End Role="Nomenclature" EntitySet="Nomenclature" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OperationHystory_Worker" Association="Self.FK_OperationHystory_Worker">
+            <End Role="Worker" EntitySet="Worker" />
+            <End Role="OperationHystory" EntitySet="OperationHystory" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Worker_Position" Association="Self.FK_Worker_Position">
+            <End Role="Position" EntitySet="Position" />
+            <End Role="Worker" EntitySet="Worker" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Repair_ServiceOrganization" Association="Self.FK_Repair_ServiceOrganization">
+            <End Role="ServiceOrganization" EntitySet="ServiceOrganization" />
+            <End Role="Repair" EntitySet="Repair" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Repair_StatusEquipInRepair" Association="Self.FK_Repair_StatusEquipInRepair">
+            <End Role="StatusEquipInRepair" EntitySet="StatusEquipInRepair" />
+            <End Role="Repair" EntitySet="Repair" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Repair_Worker" Association="Self.FK_Repair_Worker">
+            <End Role="Worker" EntitySet="Worker" />
+            <End Role="Repair" EntitySet="Repair" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Room_TypeOfRoom" Association="Self.FK_Room_TypeOfRoom">
+            <End Role="TypeOfRoom" EntitySet="TypeOfRoom" />
+            <End Role="Room" EntitySet="Room" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Worker_StatusOfWorker" Association="Self.FK_Worker_StatusOfWorker">
+            <End Role="StatusOfWorker" EntitySet="StatusOfWorker" />
+            <End Role="Worker" EntitySet="Worker" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Хранилище AccountingEquipmentModelContainer" CdmEntityContainer="AccountingEquipmentEntities">
+          <EntitySetMapping Name="Breakdown">
+            <EntityTypeMapping TypeName="AccountingEquipmentModel.Breakdown">
+              <MappingFragment StoreEntitySet="Breakdown">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="NameOfBreakdown" ColumnName="NameOfBreakdown" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Equipment">
+            <EntityTypeMapping TypeName="AccountingEquipmentModel.Equipment">
+              <MappingFragment StoreEntitySet="Equipment">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="FK_Nomenclature_id" ColumnName="FK_Nomenclature_id" />
+                <ScalarProperty Name="FK_Manufacturer_id" ColumnName="FK_Manufacturer_id" />
+                <ScalarProperty Name="Model" ColumnName="Model" />
+                <ScalarProperty Name="LifeTime" ColumnName="LifeTime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EquipmentCard">
+            <EntityTypeMapping TypeName="AccountingEquipmentModel.EquipmentCard">
+              <MappingFragment StoreEntitySet="EquipmentCard">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="InventNumber" ColumnName="InventNumber" />
+                <ScalarProperty Name="DateOfDelivery" ColumnName="DateOfDelivery" />
+                <ScalarProperty Name="FK_Equipment_id" ColumnName="FK_Equipment_id" />
+                <ScalarProperty Name="FK_StatusOfEquipment_id" ColumnName="FK_StatusOfEquipment_id" />
+                <ScalarProperty Name="SerialNumber" ColumnName="SerialNumber" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Gender">
+            <EntityTypeMapping TypeName="AccountingEquipmentModel.Gender">
+              <MappingFragment StoreEntitySet="Gender">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="GenderName" ColumnName="GenderName" />
+                <ScalarProperty Name="GenderShort" ColumnName="GenderShort" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Inventory">
+            <EntityTypeMapping TypeName="AccountingEquipmentModel.Inventory">
+              <MappingFragment StoreEntitySet="Inventory">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="FK_Room_id" ColumnName="FK_Room_id" />
+                <ScalarProperty Name="FK_StatusOfInventory_id" ColumnName="FK_StatusOfInventory_id" />
+                <ScalarProperty Name="FK_Worker_id" ColumnName="FK_Worker_id" />
+                <ScalarProperty Name="FK_EquipmentCard_id" ColumnName="FK_EquipmentCard_id" />
+                <ScalarProperty Name="InventoryDate" ColumnName="InventoryDate" />
+                <ScalarProperty Name="Comment" ColumnName="Comment" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Manufacturer">
+            <EntityTypeMapping TypeName="AccountingEquipmentModel.Manufacturer">
+              <MappingFragment StoreEntitySet="Manufacturer">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="ManufacturerName" ColumnName="ManufacturerName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Nomenclature">
+            <EntityTypeMapping TypeName="AccountingEquipmentModel.Nomenclature">
+              <MappingFragment StoreEntitySet="Nomenclature">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="NameOfNomenclature" ColumnName="NameOfNomenclature" />
+                <ScalarProperty Name="FK_TypeOfNomenclature_id" ColumnName="FK_TypeOfNomenclature_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OperationHystory">
+            <EntityTypeMapping TypeName="AccountingEquipmentModel.OperationHystory">
+              <MappingFragment StoreEntitySet="OperationHystory">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="FK_Worker_id" ColumnName="FK_Worker_id" />
+                <ScalarProperty Name="Operation" ColumnName="Operation" />
+                <ScalarProperty Name="DateTimeOfOperation" ColumnName="DateTimeOfOperation" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Position">
+            <EntityTypeMapping TypeName="AccountingEquipmentModel.Position">
+              <MappingFragment StoreEntitySet="Position">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="PostionName" ColumnName="PostionName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Repair">
+            <EntityTypeMapping TypeName="AccountingEquipmentModel.Repair">
+              <MappingFragment StoreEntitySet="Repair">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="FK_Worker_id" ColumnName="FK_Worker_id" />
+                <ScalarProperty Name="FK_EquipmentCard_id" ColumnName="FK_EquipmentCard_id" />
+                <ScalarProperty Name="FK_StatusEquipInRepair_id" ColumnName="FK_StatusEquipInRepair_id" />
+                <ScalarProperty Name="FK_ServiceOrganization_id" ColumnName="FK_ServiceOrganization_id" />
+                <ScalarProperty Name="FK_Breakdown_id" ColumnName="FK_Breakdown_id" />
+                <ScalarProperty Name="DateOfDeliveryForRepair" ColumnName="DateOfDeliveryForRepair" />
+                <ScalarProperty Name="DateOfReceiving" ColumnName="DateOfReceiving" />
+                <ScalarProperty Name="RenewalsRepair" ColumnName="RenewalsRepair" />
+                <ScalarProperty Name="NumberOfRepair" ColumnName="NumberOfRepair" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Room">
+            <EntityTypeMapping TypeName="AccountingEquipmentModel.Room">
+              <MappingFragment StoreEntitySet="Room">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="NameOfRoom" ColumnName="NameOfRoom" />
+                <ScalarProperty Name="FK_TypeOfRoom_id" ColumnName="FK_TypeOfRoom_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ServiceOrganization">
+            <EntityTypeMapping TypeName="AccountingEquipmentModel.ServiceOrganization">
+              <MappingFragment StoreEntitySet="ServiceOrganization">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="NameOfServiceOrganization" ColumnName="NameOfServiceOrganization" />
+                <ScalarProperty Name="ContactPhone" ColumnName="ContactPhone" />
+                <ScalarProperty Name="EmailOfOrganization" ColumnName="EmailOfOrganization" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="StatusEquipInRepair">
+            <EntityTypeMapping TypeName="AccountingEquipmentModel.StatusEquipInRepair">
+              <MappingFragment StoreEntitySet="StatusEquipInRepair">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="StatusEquipInRepair1" ColumnName="StatusEquipInRepair" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="StatusOfEquipment">
+            <EntityTypeMapping TypeName="AccountingEquipmentModel.StatusOfEquipment">
+              <MappingFragment StoreEntitySet="StatusOfEquipment">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="NameOfStatus" ColumnName="NameOfStatus" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="StatusOfInventory">
+            <EntityTypeMapping TypeName="AccountingEquipmentModel.StatusOfInventory">
+              <MappingFragment StoreEntitySet="StatusOfInventory">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="InventoryStatus" ColumnName="InventoryStatus" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="StatusOfWorker">
+            <EntityTypeMapping TypeName="AccountingEquipmentModel.StatusOfWorker">
+              <MappingFragment StoreEntitySet="StatusOfWorker">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="NameOfStatus" ColumnName="NameOfStatus" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TypeOfNomenclature">
+            <EntityTypeMapping TypeName="AccountingEquipmentModel.TypeOfNomenclature">
+              <MappingFragment StoreEntitySet="TypeOfNomenclature">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="TypeOfNomenclature1" ColumnName="TypeOfNomenclature" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TypeOfRoom">
+            <EntityTypeMapping TypeName="AccountingEquipmentModel.TypeOfRoom">
+              <MappingFragment StoreEntitySet="TypeOfRoom">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="NameOfType" ColumnName="NameOfType" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Worker">
+            <EntityTypeMapping TypeName="AccountingEquipmentModel.Worker">
+              <MappingFragment StoreEntitySet="Worker">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="MiddleName" ColumnName="MiddleName" />
+                <ScalarProperty Name="FK_Gender_id" ColumnName="FK_Gender_id" />
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="EmailOfWorker" ColumnName="EmailOfWorker" />
+                <ScalarProperty Name="FK_StatusOfWorker_id" ColumnName="FK_StatusOfWorker_id" />
+                <ScalarProperty Name="FK_Position_id" ColumnName="FK_Position_id" />
+                <ScalarProperty Name="Login" ColumnName="Login" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="CheckFirstVisit" ColumnName="CheckFirstVisit" />
+                <ScalarProperty Name="Photo" ColumnName="Photo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Нет" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

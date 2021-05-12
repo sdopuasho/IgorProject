@@ -1,0 +1,50 @@
+﻿<Page x:Class="Hitcom_AccountingEquipment.PageFolder.WorkerOperationsHistory"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Hitcom_AccountingEquipment.PageFolder"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="WorkerOperationsHistory">
+
+    <Grid>
+        <Border BorderBrush="#f18e57" BorderThickness="1" CornerRadius="5"  Grid.Row="1">
+            <DataGrid x:Name="DgridMyPage" AutoGenerateColumns="False" IsReadOnly="True" Margin="5">
+                <DataGrid.Resources>
+                    <Style BasedOn="{StaticResource {x:Type DataGridColumnHeader}}" TargetType="{x:Type DataGridColumnHeader}">
+                        <Setter Property="Foreground" Value="#a961a0" />
+                        <Setter Property="FontFamily" Value="Moloto"/>
+                        <Setter Property="FontSize" Value="20"/>
+                        <Setter Property="Height" Value="35"/>
+                        <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                        <Setter Property="Width" Value="auto"/>
+                        <Setter Property="VerticalContentAlignment" Value="Center"/>
+                    </Style>
+                </DataGrid.Resources>
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Фамилия. И. О." Binding="{Binding Worker.FIO}" Width="auto" Foreground="#a961a0" FontFamily="Moloto" FontSize="20"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Должность" Binding="{Binding Worker.Position.PostionName}" Width="auto"  Foreground="#a961a0" FontFamily="Moloto" FontSize="20"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Операция" Binding="{Binding Operation}" Width="auto"  Foreground="#a961a0" FontFamily="Moloto" FontSize="20"></DataGridTextColumn>
+                    <DataGridTemplateColumn Header="Дата проведения операции" Width="150"  >
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Border CornerRadius="10" BorderBrush="#f18e57" BorderThickness="1"   HorizontalAlignment="Left"  VerticalAlignment="Center" UseLayoutRounding="True" Height="35" Width="160" Margin="5">
+                                    <DatePicker SelectedDate="{Binding DateTimeOfOperation}"  Background="Transparent" Foreground="#a961a0" BorderThickness="0"  FontFamily="Moloto" FontSize="20"  Width="150" Height="25" Margin="5" >
+                                        <DatePicker.Resources>
+                                            <Style TargetType="{x:Type DatePicker}" >
+                                                <Setter Property="Foreground" Value="#a961a0" />
+                                                <Setter Property="FontFamily" Value="Moloto"/>
+                                                <Setter Property="FontSize" Value="20"/>
+                                            </Style>
+                                        </DatePicker.Resources>
+                                    </DatePicker>
+                                </Border>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                </DataGrid.Columns>
+            </DataGrid>
+        </Border>
+    </Grid>
+</Page>

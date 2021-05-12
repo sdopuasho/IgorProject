@@ -1,0 +1,24 @@
+﻿<UserControl x:Class="Hitcom_AccountingEquipment.UserInfo"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Hitcom_AccountingEquipment"
+             mc:Ignorable="d" 
+             d:DesignHeight="100" d:DesignWidth="450">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="200"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Image Stretch="Uniform" x:Name="WorkerImage" Source="{Binding ImageByte}" Grid.RowSpan="2" HorizontalAlignment="Left"/>
+        <TextBlock x:Name="FioTxt" Text="{Binding FIOW}" Grid.Row="0" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="#a961a0" FontFamily="Moloto" FontSize="20"/>
+        <TextBlock x:Name="PositionTxt" Text="{Binding PositionW}" Foreground="#a961a0" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Moloto" FontSize="20" Grid.Row="1" Grid.Column="1" />
+        <Button Content="Выход"  Foreground="#e5266f" BorderThickness="0" HorizontalAlignment="Right"  FontFamily="Moloto" FontSize="20" VerticalAlignment="Center"   Width="100" Height="35" Margin="10"  Background="Transparent" Grid.Row="1" Grid.Column="2" ButtonBase.Click="Label_Click"/>
+    </Grid>
+</UserControl>

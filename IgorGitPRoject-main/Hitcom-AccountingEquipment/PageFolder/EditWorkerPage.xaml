@@ -1,0 +1,124 @@
+﻿<Page x:Class="Hitcom_AccountingEquipment.PageFolder.EditWorkerPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Hitcom_AccountingEquipment.PageFolder" xmlns:local21="clr-namespace:Hitcom_AccountingEquipment"
+      mc:Ignorable="d" 
+      d:DesignHeight="800" d:DesignWidth="800"
+      Title="EditWorkerPage">
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="200"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="150"/>
+            <RowDefinition Height="50"/>
+        </Grid.RowDefinitions>
+        <TextBlock Text="Фамилия" Grid.Row="0"  Foreground="#a961a0" FontFamily="Moloto" FontSize="20" Margin="10" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+        <TextBlock Text="Имя" Grid.Row="1"  Foreground="#a961a0" FontFamily="Moloto" FontSize="20" Margin="10" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+        <TextBlock Text="Отчество" Grid.Row="2"  Foreground="#a961a0" FontFamily="Moloto" FontSize="20" Margin="10" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+        <TextBlock Text="Пол" Grid.Row="3"  Foreground="#a961a0" FontFamily="Moloto" FontSize="20" Margin="10" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+        <TextBlock Text="Телефон" Grid.Row="4"  Foreground="#a961a0" FontFamily="Moloto" FontSize="20" Margin="10" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+        <TextBlock Text="Почта" Grid.Row="5"  Foreground="#a961a0" FontFamily="Moloto" FontSize="20" Margin="10" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+        <TextBlock Text="Должность" Grid.Row="6"  Foreground="#a961a0" FontFamily="Moloto" FontSize="20" Margin="10" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+        <TextBlock Text="Статус" Grid.Row="7"  Foreground="#a961a0" FontFamily="Moloto" FontSize="20" Margin="10" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+        <TextBlock Text="Фотография" Grid.Row="8"  Foreground="#a961a0" FontFamily="Moloto" FontSize="20" Margin="10" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+        <StackPanel Grid.Row="0" Grid.Column="1" Orientation="Vertical">
+            <Border CornerRadius="10" BorderBrush="#f18e57" BorderThickness="1" Grid.Row="0" Grid.Column="1"  HorizontalAlignment="Left"  VerticalAlignment="Center" UseLayoutRounding="True" Height="35" Width="260" Margin="5" >
+                <TextBox x:Name="FName" PreviewTextInput="FName_PreviewTextInput" Text="{Binding FirstName}"  Grid.Row="0" Grid.Column="1" Margin="5" Foreground="#a961a0" FontFamily="Moloto" FontSize="20" VerticalAlignment="Center" HorizontalAlignment="Center" BorderThickness="0" Background="Transparent" Width="250" Height="25" >
+                </TextBox>
+            </Border>
+            <Label x:Name="FnameFail" Foreground="Red" Visibility="Collapsed"/>
+        </StackPanel>
+        <StackPanel Grid.Row="1" Grid.Column="1" Orientation="Vertical">
+            <Border CornerRadius="10" BorderBrush="#f18e57" BorderThickness="1" Grid.Row="1" Grid.Column="1"  HorizontalAlignment="Left"  VerticalAlignment="Center" UseLayoutRounding="True" Height="35" Width="260" Margin="5">
+                <TextBox x:Name="LName" PreviewTextInput="LName_PreviewTextInput" Text="{Binding LastName}" Grid.Row="1" Grid.Column="1" Margin="5" VerticalAlignment="Center" HorizontalAlignment="Center"  Foreground="#a961a0" FontFamily="Moloto" FontSize="20"  BorderThickness="0" Background="Transparent" Width="250" Height="25"/>
+            </Border>
+            <Label x:Name="LnameFail" Foreground="Red" Visibility="Collapsed"/>
+        </StackPanel>
+        <StackPanel Grid.Row="2" Grid.Column="1" Orientation="Vertical">
+            <Border CornerRadius="10" BorderBrush="#f18e57" BorderThickness="1" Grid.Row="2" Grid.Column="1"  HorizontalAlignment="Left"  VerticalAlignment="Center" UseLayoutRounding="True" Height="35" Width="260" Margin="5">
+                <TextBox x:Name="MName" PreviewTextInput="MName_PreviewTextInput" Text="{Binding MiddleName}"  Grid.Row="2" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="#a961a0" Margin="5" FontFamily="Moloto" FontSize="20"  BorderThickness="0" Background="Transparent" Width="250" Height="25"/>
+            </Border>
+            <Label x:Name="MnameFail" Foreground="Red" Visibility="Collapsed"/>
+        </StackPanel>
+        <StackPanel Grid.Row="3" Grid.Column="1" Orientation="Vertical">
+            <Border CornerRadius="10" BorderBrush="#f18e57" BorderThickness="1" Grid.Column="1" Grid.Row="3"  HorizontalAlignment="Left"  VerticalAlignment="Center" UseLayoutRounding="True" Height="35" Width="260" Margin="5">
+                <ComboBox x:Name="ComboGender" Grid.Column="1" Grid.Row="3" SelectedItem="{Binding Gender}" VerticalAlignment="Center" HorizontalAlignment="Center" Background="White" Foreground="#a961a0" BorderThickness="0"  FontFamily="Moloto" FontSize="20"  Width="250" Height="25"  Margin="5" DisplayMemberPath="GenderName" >
+                    <ComboBox.Resources>
+                        <Style TargetType="{x:Type ComboBox}">
+                            <Setter Property="Foreground" Value="#a961a0"/>
+                            <Setter Property="FontFamily" Value="Moloto"/>
+                            <Setter Property="FontSize" Value="20"/>
+                            <Setter Property="Height" Value="35"/>
+                            <Setter Property="Background" Value="#FF232D3E"/>
+                        </Style>
+                    </ComboBox.Resources>
+                </ComboBox>
+            </Border>
+            <Label x:Name="GenderFail" Foreground="Red" Visibility="Collapsed"/>
+        </StackPanel>
+        <StackPanel Grid.Row="4" Grid.Column="1" Orientation="Vertical">
+            <Border CornerRadius="10" BorderBrush="#f18e57" BorderThickness="1" Grid.Row="4" Grid.Column="1"  HorizontalAlignment="Left"  VerticalAlignment="Center" UseLayoutRounding="True" Height="35" Width="260" Margin="5">
+                <TextBox x:Name="Phone" PreviewTextInput="Phone_PreviewTextInput" Text="{Binding PhoneNumber}"  Grid.Row="4" Grid.Column="1" Margin="5" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="#a961a0" FontFamily="Moloto" FontSize="20"  BorderThickness="0" Background="Transparent" Width="250" Height="25"/>
+            </Border>
+            <Label x:Name="PhoneFail" Foreground="Red" Visibility="Collapsed"/>
+        </StackPanel>
+        <StackPanel Grid.Row="5" Grid.Column="1" Orientation="Vertical">
+            <Border CornerRadius="10" BorderBrush="#f18e57" BorderThickness="1"  Grid.Row="5" Grid.Column="1"  HorizontalAlignment="Left"  VerticalAlignment="Center" UseLayoutRounding="True" Height="35" Width="260" Margin="5">
+                <TextBox x:Name="EmailTxt" Text="{Binding EmailOfWorker}"  Grid.Row="5" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="5" Foreground="#a961a0" FontFamily="Moloto" FontSize="20"  BorderThickness="0" Background="Transparent" Width="250" Height="25"/>
+            </Border>
+            <Label x:Name="EmailFail" Foreground="Red" Visibility="Collapsed"/>
+        </StackPanel>
+        <Border CornerRadius="10" BorderBrush="#f18e57" BorderThickness="1"  Grid.Row="8" Grid.Column="1"  HorizontalAlignment="Left"  VerticalAlignment="Center" UseLayoutRounding="True" Margin="5">
+            <StackPanel Orientation="Horizontal" Grid.Row="8" Grid.Column="1">
+                <Image x:Name="PhotoWorker"  Height="130" Width="150" Margin="5"/>
+                <Button x:Name="DialogToPath" Foreground="#e5266f" BorderThickness="0"   FontFamily="Moloto" FontSize="20"  HorizontalAlignment="Left" Background="Transparent"  VerticalAlignment="Center" Margin="5" Width="200" Content="Выбор изображения" Click="DialogToPath_Click"/>
+            </StackPanel>
+        </Border>
+        <StackPanel Grid.Row="6" Grid.Column="1" Orientation="Vertical">
+            <Border CornerRadius="10" BorderBrush="#f18e57" BorderThickness="1"  Grid.Column="1" Grid.Row="6"  HorizontalAlignment="Left"  VerticalAlignment="Center" UseLayoutRounding="True" Height="35" Width="260" Margin="5">
+                <ComboBox x:Name="ComboPosition" Grid.Column="1" Grid.Row="7" SelectedItem="{Binding Position}" Margin="5" VerticalAlignment="Center" HorizontalAlignment="Center" Background="White" Foreground="#a961a0" BorderThickness="0"  FontFamily="Moloto" FontSize="20"  Width="250" Height="25"   DisplayMemberPath="PostionName" >
+                    <ComboBox.Resources>
+                        <Style TargetType="{x:Type ComboBox}">
+                            <Setter Property="Foreground" Value="#a961a0"/>
+                            <Setter Property="FontFamily" Value="Moloto"/>
+                            <Setter Property="FontSize" Value="20"/>
+                            <Setter Property="Height" Value="35"/>
+                            <Setter Property="Background" Value="#FF232D3E"/>
+                        </Style>
+                    </ComboBox.Resources>
+                </ComboBox>
+            </Border>
+            <Label x:Name="PositionFail" Foreground="Red" Visibility="Collapsed"/>
+        </StackPanel>
+        <StackPanel Grid.Row="7" Grid.Column="1" Orientation="Vertical">
+            <Border CornerRadius="10" BorderBrush="#f18e57" BorderThickness="1"  Grid.Column="1" Grid.Row="7"  HorizontalAlignment="Left"  VerticalAlignment="Center" UseLayoutRounding="True" Height="35" Width="260" Margin="5">
+                <ComboBox x:Name="ComboStatus" Grid.Column="1" Grid.Row="7" SelectedItem="{Binding StatusOfWorker}" Margin="5" VerticalAlignment="Center" HorizontalAlignment="Center" Background="White" Foreground="#a961a0" BorderThickness="0"  FontFamily="Moloto" FontSize="20"  Width="250" Height="25"  DisplayMemberPath="NameOfStatus" >
+                    <ComboBox.Resources>
+                        <Style TargetType="{x:Type ComboBox}">
+                            <Setter Property="Foreground" Value="#a961a0"/>
+                            <Setter Property="FontFamily" Value="Moloto"/>
+                            <Setter Property="FontSize" Value="20"/>
+                            <Setter Property="Height" Value="35"/>
+                            <Setter Property="Background" Value="#FF232D3E"/>
+                        </Style>
+                    </ComboBox.Resources>
+                </ComboBox>
+            </Border>
+            <Label x:Name="StatusWorkerFail" Foreground="Red" Visibility="Collapsed"/>
+        </StackPanel>
+        <Button Content="Сохранить" Grid.Row="9" Grid.Column="1" Foreground="#e5266f" BorderThickness="0"    FontFamily="Moloto" FontSize="20"  HorizontalAlignment="Left" Background="Transparent"  VerticalAlignment="Bottom" Margin="10,0,0,8" Width="175" Height="34" Name="BtnSave" Click="BtnSave_Click"/>
+    </Grid>
+</Page>
